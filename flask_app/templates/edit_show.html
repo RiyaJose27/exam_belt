@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit {{show.title}}</h1>
+    {% with messages = get_flashed_messages() %}     
+    {% if messages %}                         
+        {% for message in messages %}        
+            <p>{{message}}</p>                   
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <a href="/info/shows/">TV Shows</a>
+    <a href="/logout">Logout</a><br>
+    <form action='/shows/{{show.id}}/update' , method='POST'>
+        Title: <input type="text" name="title" value='{{show.title}}'><br>
+        Network: <input type="text" name="network" value='{{show.network}}'><br>
+        Releaseate: <input type="date" name="date" value="{{show.date.strftime('%Y-%m-%d')}}"><br>
+        Description: <input type="text" name="description" value='{{show.description}}'><br>
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>
